@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Constancia de Entrega</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link rel="stylesheet" href="http://localhost:5000/static/bootstrap.min.css">
+        <style>
+            p, td, th {
+                font-family: monospace;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Constancia de Entrega de Medicamentos</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-justify">
+                    <p>El/la farmaceutico(a) {{ session['person'] }}, deja constancia de haber entregado satifactoriamente los medicamentos más abajo declarados al paciente <b>{{ datos_persona.peop_names+' '+datos_persona.peop_lastnames }}</b> en fecha {{ datos[0].prde_date_dispatched.strftime('%d/%m/%Y') }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Medicamento</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for m in datos %}
+                                <tr>
+                                    <td>{{ m.prde_medicine.upper() }}</td>
+                                    <td>{{ m.prde_quantity }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Total Entregados:</th>
+                                <th>{{ datos[0].total_quantity }}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <p>A continuación el paciente deja constancia de su conformidad con la entrega, presentando firma ológrafa del mismo.</p>
+            <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4 text-end">
+                    <p>{{ datos_persona.peop_names+' '+datos_persona.peop_lastnames }}<br>{{ datos_persona.peop_dni }}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
