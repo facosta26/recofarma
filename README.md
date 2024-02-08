@@ -57,3 +57,6 @@ Technologies used in the project:
 *   Bootstrap 5
 *   Scikit-Learn
 *   OpenCV
+*   Socketio
+*   Dlib
+*   Numpy
